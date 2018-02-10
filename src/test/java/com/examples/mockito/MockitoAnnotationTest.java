@@ -9,7 +9,10 @@ import org.mockito.junit.MockitoRule;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
-public class MockitoTest  {
+/**
+ * The usage of the @Mock annotation and the MockitoRule rule.
+ */
+public class MockitoAnnotationTest {
 
     @Mock
     private MyDatabase databaseMock;
@@ -19,8 +22,14 @@ public class MockitoTest  {
 
     @Test
     public void testQuery()  {
+        // Given
         ClassToTest t  = new ClassToTest(databaseMock);
+        when(databaseMock.query(anyString())).thenReturn(true);
+
+        // When
         boolean check = t.query("* from t");
+
+        // Then
         assertTrue(check);
         verify(databaseMock).query("* from t");
     }

@@ -1,0 +1,8 @@
+Mockito provides several methods to create mock objects:
+
+Using the static mock() method.
+Using the @Mock annotation.
+
+If you use the @Mock annotation, you must trigger the creation of annotated objects. The MockitoRule allows this.
+It invokes the static method MockitoAnnotations.initMocks(this) to populate the annotated fields. Alternatively you can
+use @RunWith(MockitoJUnitRunner.class).
