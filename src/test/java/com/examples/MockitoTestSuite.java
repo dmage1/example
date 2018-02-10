@@ -13,7 +13,10 @@ import org.junit.runners.Suite;
         MockitoStaticImportsTest.class,
         MockitoWhenThenReturnTest.class,
         MockitoDoReturnWhenTest.class,
-        MockitoSpyTest.class})
+        MockitoSpyTest.class,
+        MockitoVerifyTest.class,
+        MockitoInjectMocksTest.class,
+        MockitoDoAnswerTest.class})
 
 public class MockitoTestSuite {
     //normally, this is an empty class

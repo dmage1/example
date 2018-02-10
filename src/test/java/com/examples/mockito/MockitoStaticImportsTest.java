@@ -1,16 +1,12 @@
 package com.examples.mockito;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
-import java.util.Iterator;
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.isA;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * By adding the org.mockito.Mockito.*; static import, you can use methods like mock() directly in your tests.
@@ -20,13 +16,34 @@ import static org.mockito.Mockito.when;
  */
 public class MockitoStaticImportsTest {
 
+    /**
+     * The most used widely used annotation in Mockito is @Mock. We can use @Mock to create and inject mocked instances
+     * without having to call Mockito.mock manually.
+     *
+     * In the following example – we’ll create a mocked ArrayList with the manual way without using @Mock annotation:
+     */
+
+    // With Static imports
+
+    @Test
+    public void whenNotUseMockAnnotation_thenCorrect() {
+        List mockList = Mockito.mock(ArrayList.class);
+
+        mockList.add("one");
+        Mockito.verify(mockList).add("one");
+        assertEquals(0, mockList.size());
+
+        Mockito.when(mockList.size()).thenReturn(100);
+        assertEquals(100, mockList.size());
+    }
+
     @Test
     public void testMyClass() {
         //  create mock
-        MyClass test = mock(MyClass.class);
+        MyClass test = Mockito.mock(MyClass.class);
 
         // define return value for method getUniqueId()
-        when(test.getUniqueId()).thenReturn(43);
+        Mockito.when(test.getUniqueId()).thenReturn(43);
 
         // use mock in test....
         assertEquals(test.getUniqueId(), 43);

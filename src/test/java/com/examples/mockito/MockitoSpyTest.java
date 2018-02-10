@@ -2,7 +2,10 @@ package com.examples.mockito;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,4 +44,19 @@ public class MockitoSpyTest {
         assertEquals("foo", spy.get(0));
     }
 
+    // The @Spy Annotation
+
+    @Spy
+    List<String> spyList = new ArrayList<String>();
+
+    @Ignore // doesn't like mix and matching
+    public void whenUsingTheSpyAnnotation_thenObjectIsSpied() {
+        spyList.add("one");
+        spyList.add("two");
+
+        Mockito.verify(spyList).add("one");
+        Mockito.verify(spyList).add("two");
+
+        assertEquals(2, spyList.size());
+    }
 }
